@@ -10,7 +10,7 @@ class Writer(models.Model):
 
 class Publisher(models.Model):
     name = models.CharField(max_length=200)
-    founded = models.DateField('foundation date')
+    foundation_date = models.DateField('foundation date', default='1990-1-1')
 
     def __str__(self):
         return self.name
@@ -44,7 +44,7 @@ class Document(models.Model):
         choices=DOCUMENT_GENRE_CHOICES,
         default='SC'
         )
-    pub_date = models.DateTimeField('publication date')
+    pub_date = models.DateField('publication date', default='1991-1-1')
 
     def __str__(self):
         return self.name

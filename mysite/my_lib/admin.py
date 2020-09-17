@@ -14,7 +14,7 @@ class WriterAdmin(admin.ModelAdmin):
     list_display = ('name', 'age')
 
 class PublisherAdmin(admin.ModelAdmin):
-    list_display = ('name', 'founded')
+    list_display = ('name', 'foundation_date')
 
 admin.site.register(Document, DocumentAdmin)
 admin.site.register(Writer, WriterAdmin)
