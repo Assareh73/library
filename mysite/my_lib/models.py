@@ -4,7 +4,6 @@ from django.db import models
 class Writer(models.Model):
     name = models.CharField(max_length=200)
     age = models.IntegerField(default=30)
-    experience = models.IntegerField(default=0)
 
     def __str__(self):
         return self.name
@@ -24,7 +23,14 @@ class Document(models.Model):
         ('WP', 'Web page'),
         ('LT', 'Letter'),
         ]
-
+    DOCUMENT_GENRE_CHOICES = [
+        ('SC', 'Scientific'),
+        ('SF', 'Science fiction'),
+        ('RM', 'Romance'),
+        ('TR', 'Thriller'),
+        ('DR', 'Drama'),
+        ('TG', 'Tragic'),
+        ]
     writer = models.ForeignKey(Writer, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
@@ -32,6 +38,11 @@ class Document(models.Model):
         max_length=2,
         choices=DOCUMENT_TYPE_CHOICES,
         default='BK'
+        )
+    document_genre = models.CharField(
+        max_length=2,
+        choices=DOCUMENT_GENRE_CHOICES,
+        default='SC'
         )
     pub_date = models.DateTimeField('date published')
 
