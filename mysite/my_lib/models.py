@@ -1,3 +1,4 @@
+from django.utils.translation import gettext_lazy as _
 from django.db import models
 
 # Create your models here.
@@ -31,6 +32,14 @@ class Document(models.Model):
         ('DR', 'Drama'),
         ('TG', 'Tragic'),
         ]
+    class RATING(models.IntegerChoices):
+        ZERO = 0, _(' ')
+        ONE = 1, _('*')
+        TWO = 2, _('**')
+        THREE = 3, _('***')
+        FOUR = 4, _('****')
+        FIVE = 5, _('*****')
+
     writer = models.ForeignKey(Writer, on_delete=models.CASCADE)
     publisher = models.ForeignKey(Publisher, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
@@ -45,6 +54,7 @@ class Document(models.Model):
         default='SC'
         )
     pub_date = models.DateField('publication date', default='1991-1-1')
+    rating = models.IntegerField(default=0, choices=RATING.choices)
 
     def __str__(self):
         return self.name
