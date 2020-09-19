@@ -1,9 +1,9 @@
-{% if document_list %} 
-    <ul> 
+{% if document_list %}
+    <ul>
     {% for document in document_list %}
-        <li><a href="{% url 'detail' document.pk %}">{{ document.name }}</a></li>
-    {% endfor %} 
+        <li><a href="{% url 'my_lib:detail' document.pk %}">{{ document.name }}</a></li>
+    {% endfor %}
     </ul>
-{% else %} 
+{% else %}
     <p>No documents are available.</p>
 {% endif %}

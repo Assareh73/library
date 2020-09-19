@@ -7,8 +7,8 @@ from .models import Document
 
 class IndexView(generic.ListView):
     template_name='my_lib/index.html'
-    context_object_name= 'books_list'
-
+    context_object_name= 'document_list'
+    model = Document
     def get_queryset(self):
         return Document.objects.all()
 
